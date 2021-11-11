@@ -9,7 +9,7 @@ allowed_datasets=$(
 
 declare -A MATCHED_FILES
 global_matches_found=false
-for study_def in $(find $1 -name "*.py"); do
+for study_def in $(find $1 -name "*.py" -not -path "./checker/*"); do
     declare -A FOUND_DATASETS
     file_matches_found=false
     for f in $(ls datasources | sed 's/.txt//g'); do
