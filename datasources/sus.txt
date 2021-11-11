@@ -1,0 +1,4 @@
+admitted_to_hospital
+attended_emergency_care
+with_ethnicity_from_sus
+outpatient_appointment_date

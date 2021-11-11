@@ -1,0 +1,8 @@
+opensafely_dummy_icnarc:
+  allow: ['icnarc']
+opensafely_dummy_ons:
+  allow: ['ons']
+opensafely_dummy_icnarc_ons:
+  allow: ['icnarc','ons']
+amir_repository:
+  allow: ['phosp']
