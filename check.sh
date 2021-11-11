@@ -1,5 +1,4 @@
 #!/bin/bash
-#export GITHUB_REPOSITORY="opensafely_dummy_icnarc"
 allowed_datasets=$(
     sed -e "/$GITHUB_REPOSITORY:/,/^\S*/!d" repository_permissions.yaml |
         sed -e "/^$GITHUB_REPOSITORY/d" |
@@ -8,10 +7,8 @@ allowed_datasets=$(
         sed -e "s/'//g"
 )
 
-
 declare -A MATCHED_FILES
 global_matches_found=false
-#echo $allowed_datasets
 for study_def in $(find $1 -name "*.py"); do
     declare -A FOUND_DATASETS
     file_matches_found=false
