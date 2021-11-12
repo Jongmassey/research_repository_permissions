@@ -1,4 +1,5 @@
 #!/bin/bash
+GITHUB_REPOSITORY=$(echo "$GITHUB_REPOSITORY" | sed 's/\//\\\//g')
 allowed_datasets=$(
     sed -e "/$GITHUB_REPOSITORY:/,/^\S*/!d" repository_permissions.yaml |
         sed -e "/^$GITHUB_REPOSITORY/d" |
@@ -6,7 +7,6 @@ allowed_datasets=$(
         sed -e 's/\]//g' |
         sed -e "s/'//g"
 )
-
 declare -A MATCHED_FILES
 global_matches_found=false
 for study_def in $(find $1 -name "*.py" -not -path "./checker/*"); do

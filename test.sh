@@ -1,5 +1,5 @@
 #!/bin/bash
-export GITHUB_REPOSITORY="opensafely_dummy_icnarc"
+export GITHUB_REPOSITORY="opensafely/dummy_icnarc"
 fail=false
 echo "testing: $GITHUB_REPOSITORY"
 if ! ./check.sh .; then
@@ -9,7 +9,7 @@ else
     fail=true
 fi
 
-export GITHUB_REPOSITORY="opensafely_dummy_ons"
+export GITHUB_REPOSITORY="opensafely/dummy_ons"
 echo "testing: $GITHUB_REPOSITORY"
 if ! ./check.sh .; then
     echo "success"
@@ -18,7 +18,7 @@ else
     fail=true
 fi
 
-export GITHUB_REPOSITORY="opensafely_dummy_icnarc_ons"
+export GITHUB_REPOSITORY="opensafely/dummy_icnarc_ons"
 echo "testing: $GITHUB_REPOSITORY"
 if ./check.sh .; then
     echo "success"
@@ -27,7 +27,7 @@ else
     fail=true
 fi
 
-export GITHUB_REPOSITORY="opensafely_dummy"
+export GITHUB_REPOSITORY="opensafely/dummy"
 echo "testing: $GITHUB_REPOSITORY"
 if ! ./check.sh .; then
     echo "success"
