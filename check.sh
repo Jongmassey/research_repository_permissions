@@ -1,7 +1,8 @@
 #!/bin/bash
 GITHUB_REPOSITORY=$(echo "$GITHUB_REPOSITORY" | sed 's/\//\\\//g')
+CHECK_DIR=`dirname $BASH_SOURCE`
 allowed_datasets=$(
-    sed -e "/$GITHUB_REPOSITORY:/,/^\S*/!d" repository_permissions.yaml |
+    sed -e "/$GITHUB_REPOSITORY:/,/^\S*/!d" "$CHECK_DIR/repository_permissions.yaml" |
         sed -e "/^$GITHUB_REPOSITORY/d" |
         sed -e 's/\s*allow\:\s*\[//g' |
         sed -e 's/\]//g' |
@@ -12,12 +13,12 @@ global_matches_found=false
 for study_def in $(find $1 -name "*.py" -not -path "./checker/*"); do
     declare -A FOUND_DATASETS
     file_matches_found=false
-    for f in $(ls datasources | sed 's/.txt//g'); do
+    for f in $(ls "$CHECK_DIR/datasources" | sed 's/.txt//g'); do
         if [[ ",$allowed_datasets," = *",$f,"* ]]; then
             continue
         fi
         matches=()
-        for rf in $(cat "datasources/$f.txt"); do
+        for rf in $(cat "$CHECK_DIR/datasources/$f.txt"); do
             matches+=$(grep -n $rf $study_def | grep "^[0-9]*\:[^#]")
         done
         #add to dict if matches found
