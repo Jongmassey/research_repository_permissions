@@ -10,7 +10,10 @@ allowed_datasets=$(
 )
 declare -A MATCHED_FILES
 global_matches_found=false
-for study_def in $(find $1 -name "*.py" -not -path "$CHECK_DIR/*"); do
+for study_def in $(find $1 -name "*.py"); do
+    if echo "$study_def"|grep -q "$CHECK_DIR"; then
+        continue
+    fi
     echo "checking: $study_def"
     declare -A FOUND_DATASETS
     file_matches_found=false
