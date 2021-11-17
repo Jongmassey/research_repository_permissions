@@ -1,5 +1,0 @@
-runs:
-  using: "composite"
-  steps:
-    - run: $GITHUB_ACTION_PATH/check.sh $GITHUB_WORKSPACE
-      shell: bash
